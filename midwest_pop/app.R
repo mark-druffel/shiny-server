@@ -21,7 +21,7 @@ server <- function(input, output) {
         dplyr::summarise(value=sum(poptotal)) %>% 
         dplyr::rename('id'='state')
     output$bubbles <- r2d3::renderD3({
-        r2d3::r2d3(data = state_pop, d3_version = 4, script = paste0(here::here(),'/midwest_pop/bubbles.js'))
+        r2d3::r2d3(data = state_pop, d3_version = 4, script = paste0('/midwest_pop/bubbles.js'))
     })
 }
 shiny::shinyApp(ui = ui, server = server)
