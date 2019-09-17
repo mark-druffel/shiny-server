@@ -1,4 +1,8 @@
 library(magrittr)
+library(shiny)
+library(ggplot2)
+library(dplyr)
+library(r2d3)
 ui <- shiny::fluidPage(
     shiny::titlePanel("Test"),
     shiny::sidebarLayout(
@@ -17,7 +21,7 @@ server <- function(input, output) {
         dplyr::summarise(value=sum(poptotal)) %>% 
         dplyr::rename('id'='state')
     output$bubbles <- r2d3::renderD3({
-        r2d3::r2d3(data = state_pop, d3_version = 4, script = "C:/Users/markd/Downloads/bubbles.js")
+        r2d3::r2d3(data = state_pop, d3_version = 4, script = paste0(here::here(),'/midwest_pop/bubbles.js'))
     })
 }
 shiny::shinyApp(ui = ui, server = server)
